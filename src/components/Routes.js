@@ -6,6 +6,7 @@ import SchoolPages from '../containers/BachPage';
 import SchoolPage from '../containers/SchoolPage';
 import CoursePage from '../containers/CoursePage';
 import CoursesTable from '../containers/CoursesTable';
+import TutorPageST from '../containers/TutorPageST';
 
 
 const Routes = () => {
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route exact path="/school/:id" component={SchoolPage} />
       <Route exact path="/bach/:id" component={CoursePage} />
       <Route exact path="/tutors/:id" component={CoursesTable} />
+      <Route exact path="/tutor/:id" component={TutorPageST} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

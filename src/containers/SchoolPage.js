@@ -47,7 +47,7 @@ export class SchoolPage extends Component {
   render() {
     const { bach } = this.state;
     return bach
-      ? <BachList  bach={bach}/>
+      ? <BachList bach={bach}/>
       : <h1>Loading...</h1>;
   }
 }

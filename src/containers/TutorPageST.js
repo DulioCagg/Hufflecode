@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 
 import TutorST from '../components/TutorST';
+// <TutorST tutor={tutorInfo} />
 
 export class TutorPage extends Component {
   state = {
-    name: 'Dulio',
-    stars: 5,
-    students: 3,
-    
-  };
+    tutorInfo: [ {
+      name: 'Dulio',
+      stars: 5,
+      students: 3
+    }]
+  }
 
   render() {
     const { tutorInfo } = this.state;
-    return (tutorInfo
+    console.log(tutorInfo);
+    return tutorInfo
       ? <TutorST tutor={tutorInfo} />
-      : <h1>Loading...</h1>
-    );
+      : <h1>Loading...</h1>;
   }
 }
 
