@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import axios from 'axios';
 import CourseList from '../components/BachList';
 
 export class SchoolPages extends Component {
@@ -26,7 +27,7 @@ export class SchoolPages extends Component {
       }
     ]
   };
-
+  
   render() {
     const { schools } = this.state;
     return (schools

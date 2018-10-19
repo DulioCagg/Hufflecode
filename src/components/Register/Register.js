@@ -1,18 +1,21 @@
 import React from 'react';
 
-const SignIn = ({ onSignIn }) => {
+const Register = ({ onSignIn }) => {
   return (
     <article className="br23 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 black-80">
-        <div>
-          <p >
-            Fun(key) esta bien chidoliro beibi
-          </p>
-        </div>
         <div className="measure center">
           <fieldset className="ba b--transparent ph0 mh0"
             id="sign_up">
-            <legend className="f1 fw6 ph0 mh0">Sign In</legend>
+            <legend className="f1 fw6 ph0 mh0">Register</legend>
+            <div className="mt3">
+              <label className="db fw6 lh-copy f6"
+                htmlFor="name">Name</label>
+              <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                type="text"
+                name="name"
+                id="name" />
+            </div>
             <div className="mt3">
               <label className="db fw6 lh-copy f6"
                 htmlFor="email-address">Email</label>
@@ -33,11 +36,8 @@ const SignIn = ({ onSignIn }) => {
           <div className="">
             <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
-              value="Sign in"
+              value="Register"
               onClick={() => onSignIn('home')} />
-          </div>
-          <div className="lh-copy mt3">
-            <p onClick={() => onSignIn('register')} className="f4 link dim black db pointer">Register</p>
           </div>
         </div>
       </main>
@@ -45,4 +45,4 @@ const SignIn = ({ onSignIn }) => {
   );
 };
 
-export default SignIn;
+export default Register;

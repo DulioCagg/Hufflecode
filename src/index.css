@@ -671,7 +671,7 @@ caption {
 
 body {
   color: #333;
-  background-color: #eee;
+  background-color: #42C1D3;
   font-family: "Open Sans";
 }
 
@@ -704,7 +704,7 @@ header {
   padding: 1rem;
   box-shadow: 0 1px 1px #999;
   border-bottom:3px solid;
-  border-bottom-color: #00C1AD;
+  border-bottom-color: rgb(255, 255, 255);
 }
 header h1 a {
   font-size: 2rem;
@@ -712,12 +712,12 @@ header h1 a {
   font-family: "Indie Flower";
 }
 
-main {
+#app {
   padding: 3rem;
   position: relative;
   min-height: calc(100vh - 155px);
 }
-main h2 {
+#app h2 {
   font-size: 2rem;
   font-weight: 700;
   margin-top: 0.5rem;
