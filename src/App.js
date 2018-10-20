@@ -28,28 +28,6 @@ class App extends Component {
       input: '',
       route: 'signIn',
       signedIn: false,
-      schools: [
-        {
-          id: 1,
-          name: 'Art'
-        },
-        {
-          id: 2,
-          name: 'Social Science'
-        },
-        {
-          id: 3,
-          name: 'Science'
-        },
-        {
-          id: 4,
-          name: 'Engineering'
-        },
-        {
-          id: 5,
-          name: 'Business'
-        }
-      ]
     };
   }
 
@@ -65,10 +43,6 @@ class App extends Component {
   }
 
   render() {
-    const filteredData = this.state.schools.filter(data => {
-      return data.name.toLowerCase().includes(this.state.input.toLowerCase());
-    });
-    console.log(filteredData);
     return (
       <React.Fragment>
         <Particles className='particles'
@@ -77,7 +51,7 @@ class App extends Component {
         {this.state.route === 'home' ?
           <div> <Header onSearchChange={this.onSearchChange} />
             <main id="app">
-              <Routes data={filteredData}/>
+              <Routes />
             </main>
             <Footer />
           </div> : (this.state.route === 'signIn' ?

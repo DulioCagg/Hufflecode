@@ -9,7 +9,7 @@ const CourseList = ({ schools }) => (
         <li key={school.id}>
           <section className="school-listing">
             <Link to={`/school/${school.id}`}>
-              <h3 className="Name">{school.name}</h3>
+              <h3 className="Name">{school.Escuela}</h3>
             </Link>
           </section>
         </li>
