@@ -1,11 +1,7 @@
 import React from 'react';
 
 const CourseList = ({ tutorInfo }) => (
-  <ul className="schools">
-    {
-      <li>Hello</li>
-    }
-  </ul>
+  <h1 className="tc">Hello there</h1>
 );
 
 export default CourseList;

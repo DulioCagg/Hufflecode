@@ -6,7 +6,7 @@ const SignIn = ({ onSignIn }) => {
       <main className="pa4 black-80">
         <div>
           <p >
-            Fun(key) esta bien chidoliro beibi
+            Fun(key)
           </p>
         </div>
         <div className="measure center">

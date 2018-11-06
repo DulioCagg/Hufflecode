@@ -28,6 +28,7 @@ class App extends Component {
       input: '',
       route: 'signIn',
       signedIn: false,
+      schools: []
     };
   }
 
@@ -38,11 +39,23 @@ class App extends Component {
     this.setState({ route: route });
   }
 
+  componentDidMount() {
+    fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=PN8pEBddMYPVd9NlXaD8ns29CfTJck-1')
+      .then(res => res.json())
+      .then(schools => {
+        this.setState({ schools: schools });
+        console.log('Fetch successful\n', schools);
+      })
+      .catch(err => console.log(err));
+  }
+
   onSearchChange = (event) => {
     this.setState({ input: event.target.value });
   }
 
   render() {
+    const filteredList = this.state.schools.filter(schools => schools.escuela.toLowerCase().includes(this.state.input.toLocaleLowerCase()));
+    console.log(filteredList);
     return (
       <React.Fragment>
         <Particles className='particles'

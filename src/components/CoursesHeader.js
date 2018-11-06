@@ -4,10 +4,10 @@ const CoursesHead = () => {
   return (
     <thead>
       <tr>
-        <th><b>Tutor</b></th>
-        <th><b>Days</b></th>
-        <th><b>Schedule</b></th>
-        <th><b>Subscribe</b></th>
+        <th><h2>Tutor</h2></th>
+        <th><h2>Days</h2></th>
+        <th><h2>Schedule</h2></th>
+        <th><h2>Subscribe</h2></th>
       </tr>
     </thead>
   );

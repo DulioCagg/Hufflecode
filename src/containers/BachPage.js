@@ -10,14 +10,15 @@ export class SchoolPages extends Component {
   componentDidMount() {
     fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=PN8pEBddMYPVd9NlXaD8ns29CfTJck-1')
       .then(res => res.json())
-      .then(schools => this.setState({ schools: schools }))
-      .then(db => console.log(this.state.schools))
+      .then(schools => {
+        this.setState({ schools: schools });
+        console.log('Fetch successful\n', schools);
+      })
       .catch(err => console.log(err));
   }
-  
+
   render() {
     const { schools } = this.state;
-    console.log(schools);
     return (schools
       ? <CourseList schools={schools} />
       : <h1>Loading...</h1>
