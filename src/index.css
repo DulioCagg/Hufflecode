@@ -495,7 +495,7 @@ dd {
 
 .button:hover, a.button:hover, button:hover, [type=submit]:hover, [type=reset]:hover, [type=button]:hover {
   border: 1px solid #0250bc;
-  background: #00C1AD;
+  background: #0c5c1f;
   color: #ffffff;
   text-decoration: none; }
 
@@ -671,7 +671,7 @@ caption {
 
 body {
   color: #333;
-  background-color: #42C1D3;
+  background-color: #ec9461;
   font-family: "Open Sans";
 }
 
@@ -700,7 +700,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #027585;
+  background-color: #0c5c1f;
   padding: 1rem;
   box-shadow: 0 1px 1px #999;
   border-bottom:3px solid;

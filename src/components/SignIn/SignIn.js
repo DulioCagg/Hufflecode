@@ -2,7 +2,7 @@ import React from 'react';
 
 const SignIn = ({ onSignIn }) => {
   return (
-    <article className="br23 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+    <article className="tc br23 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 black-80">
         <div>
           <p >
@@ -31,13 +31,13 @@ const SignIn = ({ onSignIn }) => {
             </div>
           </fieldset>
           <div className="">
-            <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+            <input className="black b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Sign in"
               onClick={() => onSignIn('home')} />
           </div>
           <div className="lh-copy mt3">
-            <p onClick={() => onSignIn('register')} className="f4 link dim black db pointer">Register</p>
+            <h4 onClick={() => onSignIn('register')} className="f4 link dim black db pointer">Register</h4>
           </div>
         </div>
       </main>
