@@ -8,11 +8,11 @@ import CoursePage from '../containers/CoursePage';
 import CoursesTable from '../containers/CoursesTable';
 import TutorPageST from '../containers/TutorPageST';
 
-const Routes = () => {  
+const Routes = ({ input }) => {  
   return (
     <Switch>
-      <Route exact path="/" component={SchoolPages} />
-      <Route exact path="/school/:id" component={SchoolPage} />
+      <Route exact path="/" render={(props) => <SchoolPages {...props} input={input}/>} />
+      <Route exact path="/school/:id" render={(props) => <SchoolPage {...props} input={input}/>} />
       <Route exact path="/bach/:id" component={CoursePage} />
       <Route exact path="/tutors/:id" component={CoursesTable} />
       <Route exact path="/tutor/:id" component={TutorPageST} />

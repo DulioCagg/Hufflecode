@@ -50,12 +50,11 @@ class App extends Component {
   }
 
   onSearchChange = (event) => {
-    this.setState({ input: event.target.value });
+    this.setState({ searchField: event.target.value });
+    console.log(this.state.searchField);
   }
 
   render() {
-    const filteredList = this.state.schools.filter(schools => schools.escuela.toLowerCase().includes(this.state.input.toLocaleLowerCase()));
-    console.log(filteredList);
     return (
       <React.Fragment>
         <Particles className='particles'
@@ -64,7 +63,7 @@ class App extends Component {
         {this.state.route === 'home' ?
           <div> <Header onSearchChange={this.onSearchChange} />
             <main id="app">
-              <Routes />
+              <Routes input={this.state.input} />
             </main>
             <Footer />
           </div> : (this.state.route === 'signIn' ?

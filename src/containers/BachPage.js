@@ -4,10 +4,13 @@ import CourseList from '../components/BachList';
 
 export class SchoolPages extends Component {
   state = {
-    schools: []
+    schools: [],
+    input: ''
   };
 
+
   componentDidMount() {
+    this.setState({ input: this.props.input })
     fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=PN8pEBddMYPVd9NlXaD8ns29CfTJck-1')
       .then(res => res.json())
       .then(schools => {
@@ -18,9 +21,9 @@ export class SchoolPages extends Component {
   }
 
   render() {
-    const { schools } = this.state;
-    return (schools
-      ? <CourseList schools={schools} />
+    const filteredSchools = this.state.schools.filter(schools => schools.escuela.toLowerCase().includes(this.state.input.toLowerCase()));
+    return (filteredSchools
+      ? <CourseList schools={filteredSchools} />
       : <h1>Loading...</h1>
     );
   }
