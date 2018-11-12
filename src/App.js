@@ -28,7 +28,7 @@ class App extends Component {
       input: '',
       route: 'signIn',
       signedIn: false,
-      type: 'tutor',
+      type: 'student',
       schools: []
     };
   }
