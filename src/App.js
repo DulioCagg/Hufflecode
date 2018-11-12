@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Particles from 'react-particles-js';
 
 import SignIn from './components/SignIn/SignIn';
@@ -7,6 +6,7 @@ import Register from './components/Register/Register';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Routes from './components/Routes';
+import './App.css';
 
 const particlesOptions = {
   particles: {
@@ -28,6 +28,7 @@ class App extends Component {
       input: '',
       route: 'signIn',
       signedIn: false,
+      type: 'tutor',
       schools: []
     };
   }
@@ -39,19 +40,8 @@ class App extends Component {
     this.setState({ route: route });
   }
 
-  componentDidMount() {
-    fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=PN8pEBddMYPVd9NlXaD8ns29CfTJck-1')
-      .then(res => res.json())
-      .then(schools => {
-        this.setState({ schools: schools });
-        console.log('Fetch successful\n', schools);
-      })
-      .catch(err => console.log(err));
-  }
-
   onSearchChange = (event) => {
-    this.setState({ searchField: event.target.value });
-    console.log(this.state.searchField);
+    this.setState({ input: event.target.value });
   }
 
   render() {
@@ -63,7 +53,7 @@ class App extends Component {
         {this.state.route === 'home' ?
           <div> <Header onSearchChange={this.onSearchChange} />
             <main id="app">
-              <Routes input={this.state.input} />
+              <Routes input={this.state.input} type={this.state.type} />
             </main>
             <Footer />
           </div> : (this.state.route === 'signIn' ?

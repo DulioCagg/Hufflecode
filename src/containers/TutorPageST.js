@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import TutorST from '../components/TutorST';
-// <TutorST tutor={tutorInfo} />
+
 
 export class TutorPage extends Component {
   state = {

@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import CourseList from '../components/BachList';
 
 export class SchoolPages extends Component {
-  state = {
-    schools: [],
-    input: ''
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      schools: [],
+      input: ''
+    }
+  }
 
   componentDidMount() {
-    this.setState({ input: this.props.input })
-    fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=PN8pEBddMYPVd9NlXaD8ns29CfTJck-1')
+    fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => res.json())
       .then(schools => {
+        console.log("Successful fetch to schools");
         this.setState({ schools: schools });
-        console.log('Fetch successful\n', schools);
       })
       .catch(err => console.log(err));
   }
 
+  componentDidUpdate(prevInput) {
+    if (this.props.input !== prevInput.input) {
+      this.setState({ input: this.props.input })
+    }
+  }
+
   render() {
-    const filteredSchools = this.state.schools.filter(schools => schools.escuela.toLowerCase().includes(this.state.input.toLowerCase()));
-    return (filteredSchools
-      ? <CourseList schools={filteredSchools} />
+    const { schools, input } = this.state;
+    const filtered = schools.filter(school => school.escuela.toLowerCase().includes(input.toLowerCase()));
+    console.log(input.toLocaleLowerCase())
+    return (filtered
+      ? <CourseList schools={filtered} />
       : <h1>Loading...</h1>
     );
   }

@@ -712,10 +712,24 @@ header h1 a {
   font-family: "Indie Flower";
 }
 
+header h1 a:hover {
+  color:#fff;
+}
+
+header p a {
+  font-size: 2rem;
+  color: #fff;
+  font-family: "Indie Flower";
+}
+
+header p a:hover {
+  color:#fff;
+}
+
 #app {
   padding: 3rem;
   position: relative;
-  min-height: calc(100vh - 155px);
+  min-height: calc(81.8vh);
 }
 #app h2 {
   font-size: 2rem;

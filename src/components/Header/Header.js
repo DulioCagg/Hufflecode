@@ -13,8 +13,8 @@ const Header = ({ onSearchChange }) => {
           className="f3 black w-40 center ba b--black bw1 bg-light-green"
           onChange={onSearchChange}
         />
-        <p className='f3 dim white underline pa3 pointer'>Messages</p>
-        <p className='f3 dim white underline pa3 pointer'>Profile</p>
+        <p className='f3 dim white underline pa3 pointer center'>Messages</p>
+        <p className='f3 dim white underline pa3 pointer center'><Link to="/profile/1" >Profile</Link></p>
       </header>
     </div>
   );
