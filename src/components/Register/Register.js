@@ -9,12 +9,17 @@ class Register extends Component {
       name: '',
       email: '',
       password: '',
+      student_id: 0,
       type: 'student'
     }
   }
 
   handleName = (event) => {
     this.setState({ name: event.target.value });
+  }
+
+  handleId = (event) => {
+    this.setState({ student_id: parseInt(event.target.value) });
   }
 
   handleEmail = (event) => {
@@ -34,18 +39,18 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
+      student_id: this.state.student_id,
       type: this.state.type
     }
 
     Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
       .then(resGet => {
-        console.log(resGet.data)
         const ans = resGet.data.filter(user => user.user.email === this.state.email);
         if (ans.length === 1) {
           alert("Email already on use")
         } else {
           if (!this.state.email.includes("@udlap.mx") || this.state.name === "" || this.state.password === "") {
-            alert("Inputs vacios.")
+            alert("Inputs incorrectos.")
           } else {
             Axios.post("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5", { user })
             this.props.onSignIn('home')
@@ -74,12 +79,24 @@ class Register extends Component {
               </div>
               <div className="mt3">
                 <label className="db fw6 lh-copy f6"
+                  htmlFor="student_id">Student ID</label>
+                <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                  type="text"
+                  name="student_id"
+                  id="student_id"
+                  required="required"
+                  placeholder="Example: 173246"
+                  onChange={this.handleId} />
+              </div>
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6"
                   htmlFor="email-address">Email</label>
                 <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                   type="email"
                   name="email-address"
                   id="email-address"
                   required="required"
+                  placeholder="example@udlap.mx"
                   onChange={this.handleEmail} />
               </div>
               <div className="mv3">
@@ -100,14 +117,14 @@ class Register extends Component {
                 </select>
               </div>
             </fieldset>
-            <div className="lh-copy mt3">
-              <h4 onClick={() => this.props.onSignIn('signIn')} className="f4 link dim black db pointer">Sign in</h4>
-            </div>
             <div className="">
               <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Register"
                 onClick={() => this.handleSubmit()} />
+              <div className="lh-copy mt3">
+                <h4 onClick={() => this.props.onSignIn('signIn')} className="f4 link dim black db pointer">Sign in</h4>
+              </div>
             </div>
           </div>
         </main>
