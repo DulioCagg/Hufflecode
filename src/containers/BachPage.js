@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import CourseList from '../components/BachList';
 
 export class SchoolPages extends Component {
