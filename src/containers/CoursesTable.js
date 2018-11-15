@@ -9,25 +9,54 @@ class CoursesTable extends Component {
     super(props);
 
     this.state = {
+      student: "5bec35081f6e4f0475ede340",
       major: '5be77595fb6fc06239e0bcc4',
       subject: 2,
       tutories: []
     }
   }
 
+  handleSubscribe = (student, subject) => {
+    Axios.put('https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5', {
+      student: this.state.student,
+      tutor: student.student_id,
+      materia: subject,
+      carrera: this.state.major
+    })
+      .then(res => {
+        if (res.status === 200) {
+          alert("Success!")
+        } else {
+          alert("An error ocurred, try again.")
+        }
+      })
+
+    Axios.put('https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5', {
+      major_id: student.major_id,
+      subject_id: student.subject_id,
+      student_id: student.student_id,
+      name: student.name,
+      days: student.days,
+      schedule: student.schedule,
+      amount: student.amount,
+      current: student.current + 1
+    })
+  }
+
   componentDidMount() {
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
-        this.setState({ tutories: res.data.filter(tutor => tutor.major_id === this.state.major && tutor.subject_id === this.state.subject) })
+        console.log(res.data)
+        this.setState({ tutories: res.data.filter(tutor => tutor.major_id === this.state.major && tutor.subject_id === this.state.subject && tutor.amount !== tutor.current) })
       })
   }
 
   render() {
-    const { major, subject, tutories } = this.state;
+    const { student, major, subject, tutories } = this.state;
     return (
       <table>
         <CoursesHead />
-        <CoursesBody tutories={tutories}/>
+        <CoursesBody handleSubscribe={this.handleSubscribe} student={student} tutories={tutories} />
       </table>
     );
   }
