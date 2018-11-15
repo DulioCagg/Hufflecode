@@ -14,7 +14,6 @@ export class CoursePage extends Component {
     fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/majors?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => res.json())
       .then(majors => {
-        console.log("Successful fetch to courses")
         const test = majors.filter(major => major.id === 8);
         this.setState({ courses: test[0].subject })
       })

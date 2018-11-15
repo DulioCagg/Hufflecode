@@ -2,18 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const CoursesBody = () => {
-  return (
-    <tbody>
-      <tr>
-        <Link to={'/tutor/1'} >
-          <td><h4 className="grow">Pelusilla</h4></td>
-        </Link>
-        <td><h4>Mon, Fri</h4></td>
-        <td><h4>15:00-16:00</h4></td>
+const CoursesBody = ({ tutories }) => {
+  return (<tbody>
+    {tutories.map(tutorie =>
+      <tr key={tutorie._id}>
+        <td><h4 className="grow"><Link to={'/tutor/1'} >{tutorie.name}</Link></h4></td>
+        <td><h4>{tutorie.days}</h4></td>
+        <td><h4>{tutorie.schedule}</h4></td>
         <td><button className="subscribe">Subscribe!</button></td>
-      </tr>
-    </tbody>
+      </tr>)}
+  </tbody>
   );
 };
 

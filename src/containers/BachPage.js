@@ -15,7 +15,6 @@ export class SchoolPages extends Component {
     fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/schools?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => res.json())
       .then(schools => {
-        console.log("Successful fetch to schools");
         this.setState({ schools: schools });
       })
       .catch(err => console.log(err));

@@ -23,7 +23,7 @@ class CoursesTable extends Component {
   }
 
   render() {
-    const { tutories } = this.state.tutories;
+    const { major, subject, tutories } = this.state;
     return (
       <table>
         <CoursesHead />
