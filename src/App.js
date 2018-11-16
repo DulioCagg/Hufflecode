@@ -24,6 +24,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      student: '5bec35081f6e4f0475ede340',
+      school: 4,
+      major: 8,
+      subject: 2,
       output: [],
       input: '',
       route: 'signIn',
@@ -31,6 +35,18 @@ class App extends Component {
       type: 'student',
       schools: []
     };
+  }
+
+  onSchool = (school) => {
+    this.setState({ school: school })
+  }
+
+  onMajor = (major) => {
+    this.setState({ major: major })
+  }
+
+  onSubject = (subject) => {
+    this.setState({ subject: subject })
   }
 
   onSignIn = (route) => {
@@ -53,7 +69,7 @@ class App extends Component {
         {this.state.route === 'home' ?
           <div> <Header onSearchChange={this.onSearchChange} />
             <main id="app">
-              <Routes input={this.state.input} type={this.state.type} />
+              <Routes input={this.state.input} type={this.state.type} school={this.state.school} student={this.state.student} major={this.state.major} subject={this.state.subject} onSchool={this.onSchool} onMajor={this.onMajor} onSubject={this.onSubject} />
             </main>
             <Footer />
           </div> : (this.state.route === 'signIn' ?

@@ -10,7 +10,7 @@ class CoursesTable extends Component {
 
     this.state = {
       student: "5bec35081f6e4f0475ede340",
-      major: '5be77595fb6fc06239e0bcc4',
+      major: 8,
       subject: 2,
       tutories: []
     }
@@ -53,10 +53,11 @@ class CoursesTable extends Component {
 
   render() {
     const { student, major, subject, tutories } = this.state;
+    console.log(tutories)
     return (
       <table>
         <CoursesHead />
-        <CoursesBody handleSubscribe={this.handleSubscribe} student={student} tutories={tutories} />
+        <CoursesBody handleSubscribe={this.handleSubscribe}  tutories={tutories} />
       </table>
     );
   }

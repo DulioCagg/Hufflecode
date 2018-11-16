@@ -15,7 +15,7 @@ export class SchoolPage extends Component {
   componentDidMount() {
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/majors?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
-        this.setState({ bach: res.data.filter(bach => bach.school === this.state.school) }
+        this.setState({ bach: res.data.filter(bach => bach.school === this.props.school) }
         )})
       .catch(err => console.log(err));
   }

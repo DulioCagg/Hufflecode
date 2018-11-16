@@ -10,7 +10,7 @@ class Register extends Component {
       email: '',
       password: '',
       student_id: 0,
-      type: 'student'
+      type: ''
     }
   }
 
