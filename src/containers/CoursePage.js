@@ -30,7 +30,7 @@ export class CoursePage extends Component {
     const { courses, input } = this.state;
     const filtered = courses.filter(course => course.subject_name.toLowerCase().includes(input.toLowerCase()));
     return filtered
-      ? <CourseList course={filtered}/>
+      ? <CourseList course={filtered} onSubject={this.props.onSubject}/>
       : <h1>Loading...</h1>;
   }
 }

@@ -30,7 +30,7 @@ export class SchoolPage extends Component {
     const { bach, input } = this.state;
     const filtered = bach.filter(bach => bach.name.toLowerCase().includes(input.toLowerCase()));
     return filtered
-      ? <BachList bach={filtered} />
+      ? <BachList bach={filtered} onMajor={this.props.onMajor}/>
       : <h1>Loading...</h1>;
   }
 }

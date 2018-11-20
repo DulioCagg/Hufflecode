@@ -12,12 +12,31 @@ import ProfilePage from '../containers/ProfilePage';
 const Routes = ({ input, type, student, school, major, subject, onSchool, onMajor, onSubject }) => {
   return (
     <Switch>
-      <Route exact path="/" render={(props) => <SchoolPages {...props} input={input} />} />
-      <Route exact path="/school/:id" render={(props) => <SchoolPage {...props} input={input} school={school} />} />
-      <Route exact path="/bach/:id" render={(props) => <CoursePage {...props} input={input} major={major}/>} />
-      <Route exact path="/profile/:id" render={(props) => <ProfilePage {...props} type={type} />} />
-      <Route exact path="/tutors/:id" render={(props) => <CoursesTable {...props} major={major} subject={subject}/>} />
+      <Route exact path="/" render={(props) => <SchoolPages {...props} 
+      input={input} 
+      onSchool={onSchool}/>} />
+
+      <Route exact path="/school/:id" render={(props) => <SchoolPage {...props} 
+      input={input} 
+      school={school}
+      onMajor={onMajor} />} />
+
+      <Route exact path="/bach/:id" render={(props) => <CoursePage {...props} 
+      input={input} 
+      major={major}
+      onSubject={onSubject} />} />
+
+
+      <Route exact path="/tutors/:id" render={(props) => <CoursesTable {...props} 
+      student={student}
+      major={major} 
+      subject={subject}/>} />
+
+      <Route exact path="/profile/:id" render={(props) => <ProfilePage {...props} 
+      type={type} />} />
+
       <Route exact path="/tutor/:id" component={TutorPageST} />
+
       <Route path="*" component={NotFound} />
     </Switch>
   );
