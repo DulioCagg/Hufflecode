@@ -10,7 +10,7 @@ const CourseList = ({ schools, onSchool }) => (
         <li key={school.id}>
           <div className="pa2 ma2 bg-light-green shadow-5 grow">
             <Link to={`/school/${school.id}`}>
-              <button className="Name" onClick={() => onSchool(school.id)} >{school.escuela}</button>
+              <button className="Name f3" onClick={() => onSchool(school.id)} >{school.escuela}</button>
             </Link>
           </div>
         </li>

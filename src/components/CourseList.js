@@ -7,7 +7,7 @@ const CourseList = ({ course, onSubject }) => {
     {course.map(course => (<li key={course.subject_id}>
       <div className="pa2 ma2 bg-light-green shadow-5 grow">
         <Link to={`/tutors/${course.subject_id}/`}>
-          <button className="Name" onClick={() => onSubject(course.subject_id)} >{course.subject_name}</button>
+          <button className="Name f3" onClick={() => onSubject(course.subject_id)} >{course.subject_name}</button>
         </Link>
       </div>
     </li>))}
