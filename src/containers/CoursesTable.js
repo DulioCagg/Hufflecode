@@ -55,6 +55,7 @@ class CoursesTable extends Component {
     const { student, major, subject, tutories } = this.state;
     return (
       <table>
+        <h2>Elige a tu tutor para la materia {this.state.subject}</h2>
         <CoursesHead />
         <CoursesBody handleSubscribe={this.handleSubscribe}  tutories={tutories} />
       </table>

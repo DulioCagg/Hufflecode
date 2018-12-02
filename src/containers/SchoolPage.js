@@ -6,7 +6,7 @@ export class SchoolPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      school: 4,
+      school: 0,
       bach: [],
       input: ''
     }
@@ -16,7 +16,8 @@ export class SchoolPage extends Component {
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/majors?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
         this.setState({ bach: res.data.filter(bach => bach.school === this.props.school) }
-        )})
+        )
+      })
       .catch(err => console.log(err));
   }
 
@@ -30,7 +31,11 @@ export class SchoolPage extends Component {
     const { bach, input } = this.state;
     const filtered = bach.filter(bach => bach.name.toLowerCase().includes(input.toLowerCase()));
     return filtered
-      ? <BachList bach={filtered} onMajor={this.props.onMajor}/>
+      ?
+      <div>
+        <h2>Elige la carrera a la cual pertenece la materia</h2>
+        <BachList bach={filtered} onMajor={this.props.onMajor} />
+      </div>
       : <h1>Loading...</h1>;
   }
 }
