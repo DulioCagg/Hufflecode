@@ -13,6 +13,8 @@ export class SchoolPage extends Component {
   }
 
   componentDidMount() {
+    this.setState({school : this.props.school})
+    console.log(this.state.school)
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/majors?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
         this.setState({ bach: res.data.filter(bach => bach.school === this.props.school) }
@@ -30,7 +32,7 @@ export class SchoolPage extends Component {
     const { bach, input } = this.state;
     const filtered = bach.filter(bach => bach.name.toLowerCase().includes(input.toLowerCase()));
     return filtered
-      ? <BachList bach={filtered} />
+      ? <BachList bach={filtered} onSchool={this.props.onSchool}/>
       : <h1>Loading...</h1>;
   }
 }

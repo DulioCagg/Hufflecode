@@ -38,6 +38,7 @@ class App extends Component {
   }
 
   onSchool = (school) => {
+    console.log("lmao")
     this.setState({ school: school })
   }
 

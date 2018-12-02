@@ -12,7 +12,8 @@ import ProfilePage from '../containers/ProfilePage';
 const Routes = ({ input, type, student, school, major, subject, onSchool, onMajor, onSubject }) => {
   return (
     <Switch>
-      <Route exact path="/" render={(props) => <SchoolPages {...props} input={input} />} />
+      <Route exact path="/" render={(props) => <SchoolPages {...props} 
+      input={input} onSchool={onSchool}/>} />
       <Route exact path="/school/:id" render={(props) => <SchoolPage {...props} input={input} school={school} />} />
       <Route exact path="/bach/:id" render={(props) => <CoursePage {...props} input={input} major={major}/>} />
       <Route exact path="/profile/:id" render={(props) => <ProfilePage {...props} type={type} />} />
