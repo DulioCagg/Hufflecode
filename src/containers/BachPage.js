@@ -30,14 +30,11 @@ export class SchoolPages extends Component {
     const { schools, input } = this.state;
     const filtered = schools.filter(school => school.escuela.toLowerCase().includes(input.toLowerCase()));
     return (filtered
-<<<<<<< HEAD
-      ? <CourseList schools={filtered} onSchool={this.props.school} />
-=======
+
       ? <div>
-        <h2>Elige la escuela a la cual pertenece la materia</h2>
+        <h2 className="tc">Elige la escuela a la cual pertenece la materia</h2>
         <CourseList schools={filtered} onSchool={this.props.onSchool} />
       </div>
->>>>>>> 842daaa2f7b9e8399f536b08408345a11b01cc41
       : <h1>Loading...</h1>
     );
   }

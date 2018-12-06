@@ -54,11 +54,14 @@ class CoursesTable extends Component {
   render() {
     const { student, major, subject, tutories } = this.state;
     return (
-      <table>
-        <h2>Elige a tu tutor para la materia {this.state.subject}</h2>
-        <CoursesHead />
-        <CoursesBody handleSubscribe={this.handleSubscribe}  tutories={tutories} />
-      </table>
+      <div>
+        <h2 className="tc">Elige a tu tutor para la materia</h2>
+        <hr/>
+        <table>
+          <CoursesHead />
+          <CoursesBody handleSubscribe={this.handleSubscribe} tutories={tutories} />
+        </table>
+      </div>
     );
   }
 }

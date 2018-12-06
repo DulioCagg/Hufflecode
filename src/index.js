@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import 'tachyons';
+import '../node_modules/font-awesome/css/font-awesome.min.css'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

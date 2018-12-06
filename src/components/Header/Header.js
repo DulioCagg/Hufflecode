@@ -4,8 +4,11 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 
 const Header = ({ onSearchChange }) => {
+  let faS = {
+    'font-size': '80px',
+  }
   return (
-    <div>
+    <div className="header">
       <header>
         <h1 className="center white"><Link to="/">Fun(key)</Link></h1>
         <input type="search"
@@ -13,8 +16,7 @@ const Header = ({ onSearchChange }) => {
           className="f3 black w-40 center ba b--black bw1 bg-light-green"
           onChange={onSearchChange}
         />
-        <p className='f3 dim white underline pa3 pointer center'>Messages</p>
-        <p className='f3 dim white underline pa3 pointer center'><Link to="/profile/1" >Profile</Link></p>
+        <Link to="/profile/1"><i className="fas fa-user-circle white center" style={faS}></i></Link>
       </header>
     </div>
   );

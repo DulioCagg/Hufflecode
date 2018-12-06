@@ -32,7 +32,7 @@ export class CoursePage extends Component {
     return filtered
       ?
       <div>
-        <h2>Elige la materia de la asesoria</h2>
+        <h2 className="tc">Elige la materia de la asesoría</h2>
         <CourseList course={filtered} onSubject={this.props.onSubject} />
       </div>
       : <h1>Loading...</h1>;
