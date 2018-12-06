@@ -9,15 +9,15 @@ class CoursesTable extends Component {
     super(props);
 
     this.state = {
-      student: "5bec35081f6e4f0475ede340",
-      major: 8,
-      subject: 2,
+      student: "",
+      major: 0,
+      subject: 0,
       tutories: []
     }
   }
 
   handleSubscribe = (student, subject) => {
-    Axios.put('https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5', {
+    Axios.post('https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5', {
       student: this.state.student,
       tutor: student.student_id,
       materia: subject,
@@ -44,18 +44,18 @@ class CoursesTable extends Component {
   }
 
   componentDidMount() {
+    this.setState({ student: this.props.student, major: this.props.major, subject: this.props.subject });
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
-        console.log(res.data)
         this.setState({ tutories: res.data.filter(tutor => tutor.major_id === this.state.major && tutor.subject_id === this.state.subject && tutor.amount !== tutor.current) })
       })
   }
 
   render() {
     const { student, major, subject, tutories } = this.state;
-    console.log(tutories)
     return (
       <table>
+        <h2>Elige a tu tutor para la materia {this.state.subject}</h2>
         <CoursesHead />
         <CoursesBody handleSubscribe={this.handleSubscribe}  tutories={tutories} />
       </table>

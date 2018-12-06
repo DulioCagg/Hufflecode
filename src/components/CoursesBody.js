@@ -9,7 +9,7 @@ const CoursesBody = ({ handleSubscribe, tutories }) => {
         <td><h4 className="grow"><Link to={'/tutor/1'} >{tutorie.name}</Link></h4></td>
         <td><h4>{tutorie.days}</h4></td>
         <td><h4>{tutorie.schedule}</h4></td>
-        <td><button className="subscribe" onClick={() => handleSubscribe(tutorie, 2)} >Subscribe!</button></td>
+        <td><button className="subscribe f3" onClick={() => handleSubscribe(tutorie, 2)} >Subscribe!</button></td>
       </tr>)}
   </tbody>
   );

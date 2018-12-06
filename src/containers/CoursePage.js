@@ -9,7 +9,7 @@ export class CoursePage extends Component {
       input: ''
     }
   }
-  
+
   componentDidMount() {
     fetch('https://api.mlab.com/api/1/databases/hufflecodedb/collections/majors?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => res.json())
@@ -30,7 +30,11 @@ export class CoursePage extends Component {
     const { courses, input } = this.state;
     const filtered = courses.filter(course => course.subject_name.toLowerCase().includes(input.toLowerCase()));
     return filtered
-      ? <CourseList course={filtered}/>
+      ?
+      <div>
+        <h2>Elige la materia de la asesoria</h2>
+        <CourseList course={filtered} onSubject={this.props.onSubject} />
+      </div>
       : <h1>Loading...</h1>;
   }
 }
