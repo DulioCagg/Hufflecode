@@ -1,0 +1,34 @@
+.profileStudentS {
+  text-align: center;
+}
+
+.profileInfoS {
+  width: 40%;
+  float: left;
+}
+
+.studentCourses {
+  display: flex;
+  justify-content: center;
+}
+
+.profileTutor {
+  text-align: center;
+}
+
+.profileInfoT {
+  width: 40%;
+  float: left;
+}
+
+.profileTutorC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.tutorCourses {
+  display: flex;
+  justify-content: center;
+}

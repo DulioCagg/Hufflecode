@@ -16,12 +16,14 @@ class CoursesTable extends Component {
     }
   }
 
-  handleSubscribe = (student, subject) => {
+  handleSubscribe = (student) => {
     Axios.post('https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5', {
+      tutorie: student._id.$oid,
       student: this.state.student,
       tutor: student.student_id,
-      materia: subject,
-      carrera: this.state.major
+      materia: student.subject_id,
+      carrera: this.state.major,
+      name: student.name
     })
       .then(res => {
         if (res.status === 200) {

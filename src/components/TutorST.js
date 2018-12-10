@@ -1,7 +1,19 @@
 import React from 'react';
 
-const CourseList = ({ tutorInfo }) => (
-  <h1 className="tc">Hello there tutor from student</h1>
+import { Link } from 'react-router-dom';
+
+const TutorST = ({ tutories }) => (
+  <ul className="tutorTutories">
+    {
+      tutories.map(tutorie => (
+        <li key={tutorie._id.$oid}>
+          <div className="pa2 ma2 bg-light-green shadow-5 grow">
+            <button className="Name f3" onClick={() => console.log(tutorie.subject_id)} >{tutorie.subject_id}</button>
+        </div>
+        </li>
+      ))
+    }
+  </ul>
 );
 
-export default CourseList;
+export default TutorST;

@@ -1,0 +1,19 @@
+.ProfileSTutor {
+  text-align: center;
+}
+
+.profileSInfo {
+  width: 40%;
+  float: left;
+}
+
+.tutorSStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tutorSCourses {
+  display: flex;
+  justify-content: center;
+}

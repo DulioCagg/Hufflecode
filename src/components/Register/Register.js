@@ -10,7 +10,11 @@ class Register extends Component {
       email: '',
       password: '',
       student_id: 0,
-      type: ''
+      type: '',
+      info: "Info to modify",
+      numberCourses: 0,
+      numberStudents: 0,
+      grade: 0
     }
   }
 
@@ -40,7 +44,11 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       student_id: this.state.student_id,
-      type: this.state.type
+      type: this.state.type,
+      info: this.state.info,
+      numberCourses: 0,
+      numberStudents: 0,
+      grade: 0
     }
 
     Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")

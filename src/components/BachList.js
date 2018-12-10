@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 
 const CourseList = ({ schools, onSchool }) => (
   <ul className="schools">

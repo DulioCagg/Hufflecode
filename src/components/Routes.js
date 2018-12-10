@@ -6,8 +6,9 @@ import SchoolPages from '../containers/BachPage';
 import SchoolPage from '../containers/SchoolPage';
 import CoursePage from '../containers/CoursePage';
 import CoursesTable from '../containers/CoursesTable';
-import TutorPageST from '../containers/TutorPageST';
-import ProfilePage from '../containers/ProfilePage';
+import TutorPage from '../containers/TutorPage/TutorPage';
+import ProfilePage from '../containers/ProfilePage/ProfilePage';
+import AddTutorie from '../components/AddTutorie';
 
 const Routes = ({ input, type, student, school, major, subject, onSchool, onMajor, onSubject }) => {
   return (
@@ -30,12 +31,18 @@ const Routes = ({ input, type, student, school, major, subject, onSchool, onMajo
       <Route exact path="/tutors/:id" render={(props) => <CoursesTable {...props}
       student={student}
       major={major} 
-      subject={subject}/>} />
+      subject={subject} />} />
 
       <Route exact path="/profile/:id" render={(props) => <ProfilePage {...props}
-      type={type} />} />
+      type={type}
+      student={student} />} />
 
-      <Route exact path="/tutor/:id" component={TutorPageST} />
+      <Route exact path="/tutor/:id" render={(props) => <TutorPage {...props}
+      type={type}
+      student={student} />} />
+
+      <Route exact path="/agregar-curso" render={(props) => <AddTutorie {...props} 
+      student={student} />} />
 
       <Route path="*" component={NotFound} />
     </Switch>
