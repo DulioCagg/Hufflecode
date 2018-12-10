@@ -7,6 +7,7 @@ class AddTutorie extends Component {
     super(props);
 
     this.state = {
+      tutorName: "",
       student_id: "",
       major_id: 0,
       subject_id: 0,
@@ -43,20 +44,21 @@ class AddTutorie extends Component {
   }
 
   handleSubmit = () => {
-    Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
-    Axios.post("https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5", {
-      tut_name: 
-      major_id: this.state.major_id,
-      subject_id: this.state.subject_id,
-      student_id: this.state.student_id,
-      name: this.state.name,
-      days: this.state.days,
-      schedule: this.state.schedule,
-      amount: this.state.amount,
-      current: 0
+    Axios.get(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/students/${this.state.student_id}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`).then(res => {
+      Axios.post("https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5", {
+        tutorName: res.data.user.name,
+        major_id: this.state.major_id,
+        subject_id: this.state.subject_id,
+        student_id: this.state.student_id,
+        name: this.state.name,
+        days: this.state.days,
+        schedule: this.state.schedule,
+        amount: this.state.amount,
+        current: 0
 
+      })
+        .then(alert("Se dio de alta la nueva asesoria"))
     })
-      .then(alert("Se dio de alta la nueva asesoria"))
   }
 
   componentDidMount() {

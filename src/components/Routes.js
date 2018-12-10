@@ -10,7 +10,7 @@ import TutorPage from '../containers/TutorPage/TutorPage';
 import ProfilePage from '../containers/ProfilePage/ProfilePage';
 import AddTutorie from '../components/AddTutorie';
 
-const Routes = ({ input, type, student, school, major, subject, onSchool, onMajor, onSubject }) => {
+const Routes = ({ input, type, student, tutor, school, major, subject, onSchool, onMajor, onSubject, onTutor}) => {
   return (
     <Switch>
       <Route exact path="/" render={(props) => <SchoolPages {...props} 
@@ -31,15 +31,18 @@ const Routes = ({ input, type, student, school, major, subject, onSchool, onMajo
       <Route exact path="/tutors/:id" render={(props) => <CoursesTable {...props}
       student={student}
       major={major} 
-      subject={subject} />} />
+      subject={subject}
+      onTutor={onTutor} />} />
 
       <Route exact path="/profile/:id" render={(props) => <ProfilePage {...props}
       type={type}
-      student={student} />} />
+      student={student}
+      onTutor={onTutor} />} />
 
       <Route exact path="/tutor/:id" render={(props) => <TutorPage {...props}
       type={type}
-      student={student} />} />
+      student={student}
+      tutor={tutor} />} />
 
       <Route exact path="/agregar-curso" render={(props) => <AddTutorie {...props} 
       student={student} />} />

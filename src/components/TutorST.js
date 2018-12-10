@@ -8,7 +8,7 @@ const TutorST = ({ tutories }) => (
       tutories.map(tutorie => (
         <li key={tutorie._id.$oid}>
           <div className="pa2 ma2 bg-light-green shadow-5 grow">
-            <button className="Name f3" onClick={() => console.log(tutorie.subject_id)} >{tutorie.subject_id}</button>
+            <button className="Name f3" onClick={() => console.log(tutorie.subject_id)} >{tutorie.name}</button>
         </div>
         </li>
       ))

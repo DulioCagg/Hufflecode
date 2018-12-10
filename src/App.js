@@ -24,7 +24,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      student: '5bec35081f6e4f0475ede340',
+      student: "",
+      tutor: "",
       school: 0,
       major: 0,
       subject: 0,
@@ -49,10 +50,6 @@ class App extends Component {
     this.setState({ subject: subject })
   }
 
-  onLogin = (student) => {
-    this.setState({ student: student })
-  }
-
   onSignIn = (route) => {
     if (route === 'home') {
       this.setState({ signedIn: true });
@@ -64,31 +61,59 @@ class App extends Component {
     this.setState({ input: event.target.value });
   }
 
+  onLogin = (id, type) => {
+    this.setState({ student: id })
+    this.setState({ type: type })
+  }
+
+  onLogout = (rote) => {
+      this.setState({ route: 'signIn' })
+      this.setState({ signedIn: false })
+      this.setState({ student: "" })
+      this.setState({ tutor: "" })
+      this.setState({ school: 0 })
+      this.setState({ major: 0})
+      this.setState({ subject: 0 })
+      this.setState({ output: []})
+      this.setState({ input: '' })
+      this.setState({ route: 'signIn' })
+      this.setState({ signedIn: false })
+      this.setState({ type: 'student' })
+      this.setState({ schools: [] })
+      console.log(this.state)
+  }
+
+  onTutor = (id) => {
+    this.setState({ tutor: id })
+  }
+
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <Particles className='particles'
           params={particlesOptions}
         />
         {this.state.route === 'home' ?
-          <div> <Header onSearchChange={this.onSearchChange} />
+          <div> <Header onSearchChange={this.onSearchChange} onLogout={this.onLogout}/>
             <main id="app">
               <Routes 
               input={this.state.input} 
               type={this.state.type} 
               school={this.state.school} 
-              student={this.state.student} 
+              student={this.state.student}
+              tutor={this.state.tutor} 
               major={this.state.major} 
               subject={this.state.subject} 
               onSchool={this.onSchool} 
               onMajor={this.onMajor} 
-              onSubject={this.onSubject} />
+              onSubject={this.onSubject}
+              onTutor={this.onTutor} />
             </main>
             <Footer />
           </div> : (this.state.route === 'signIn' ?
             <SignIn onSignIn={this.onSignIn} onLogin={this.onLogin} /> :
-            <Register onSignIn={this.onSignIn} />
-
+            <Register onSignIn={this.onSignIn} onLogin={this.onLogin} />
           )
         }
       </React.Fragment>

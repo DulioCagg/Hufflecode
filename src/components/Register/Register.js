@@ -61,7 +61,14 @@ class Register extends Component {
             alert("Inputs incorrectos.")
           } else {
             Axios.post("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5", { user })
-            this.props.onSignIn('home')
+            Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
+            .then(res => {
+                const ans = res.data.filter(user => (user.user.email === this.state.email) && (user.user.password === this.state.password))
+                if(ans.length === 1) {
+                  this.props.onLogin(ans[0]._id.$oid, ans[0].user.type)
+                  this.props.onSignIn('home')
+                }
+            })
           }
         }
       })

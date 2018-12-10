@@ -22,8 +22,10 @@ class TutorPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.tutor)
     console.log(this.props.student)
-    this.setState({ studentId: this.props.student })
+    console.log(this.props.type)
+    this.setState({ studentId: this.props.tutor })
     this.setState({ type: this.props.type })
     Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
       .then(res => {

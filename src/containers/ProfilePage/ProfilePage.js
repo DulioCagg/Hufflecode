@@ -45,9 +45,22 @@ class ProfilePage extends Component {
       })
   }
 
-  deleteTutorie = (id) => {
-    Axios.delete(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor/${id}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {})
+  deleteTutorie = (idS, idT) => {
+    Axios.delete(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor/${idS}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {})
       .then(res => console.log(res.data))
+    Axios.get(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor/${idT}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`)
+      .then(res => {
+        Axios.put(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor/${idT}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {
+          major_id: res.data.major_id,
+          subject_id: res.data.subject_id,
+          student_id: res.data.student_id,
+          name: res.data.name,
+          days: res.data.days,
+          schedule: res.data.schedule,
+          amount: res.data.amount,
+          current: res.data.current - 1
+        }).then(res => console.log(res.data))
+      })
   }
 
 
@@ -66,32 +79,35 @@ class ProfilePage extends Component {
 
   calificar = (id) => {
     let cal = prompt("Calificacion del tutor (Entre 1 y 10)")
-    Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
-      .then(res => {
-        let info = res.data.filter(x => x._id.$oid === id)
-        Axios.put("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5", {
-          "user": {
-            "name": info[0].user.name,
-            "email": info[0].user.email,
-            "password": info[0].user.password,
-            "student_id": info[0].user.studentId,
-            "type": info[0].user.type,
-            "info": info[0].user.info,
-            "numberCourses": info[0].user.numberCourses,
-            "numberStudents": info[0].user.numberStudents,
-            "grade": ((info[0].user.grade + cal) / 2)
-          }
+    if (cal > 0 && cal < 11) {
+      Axios.get("https://api.mlab.com/api/1/databases/hufflecodedb/collections/students?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5")
+        .then(res => {
+          let info = res.data.filter(x => x._id.$oid === id)
+          console.log(info[0].user.grade);
+          console.log(cal);
+          console.log(parseInt(cal) + parseInt(info[0].user.grade));
+          Axios.put(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/students/${id}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {
+            "user": {
+              "name": info[0].user.name,
+              "email": info[0].user.email,
+              "password": info[0].user.password,
+              "student_id": info[0].user.studentId,
+              "type": info[0].user.type,
+              "info": info[0].user.info,
+              "numberCourses": info[0].user.numberCourses,
+              "numberStudents": info[0].user.numberStudents,
+              "grade": ((parseInt(cal) + parseInt(info[0].user.grade)) / 2)
+            }
+          })
         })
-      })
+    } else {
+      alert("Numero fuera del rango")
+    }
   }
 
 
   render() {
     const { id, name, email, info, type, studentTutories, tutorTutories } = this.state;
-
-    console.log("tutor", tutorTutories);
-    console.log("student", studentTutories);
-
     if (this.state.type === 'student') {
       if (studentTutories.length > 0) {
         return (
@@ -104,7 +120,7 @@ class ProfilePage extends Component {
             </div>
             <h1 className="tc">Mis tutorias</h1>
             <div className="studentCourses">
-              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorie} cal={this.calificar} />
+              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorie} cal={this.calificar} onTutor={this.props.onTutor} />
             </div>
           </div>
         )
@@ -118,7 +134,7 @@ class ProfilePage extends Component {
               <h2>{info}</h2>
             </div>
             <h1 className="tc">Mis tutorias</h1>
-            <h2>No tutorias registradas</h2>
+            <h2 className="tc">No tutorias registradas</h2>
           </div>
         )
       }
@@ -154,7 +170,7 @@ class ProfilePage extends Component {
           <div className="profileTutorC">
             <h1>Tutorias que estoy tomando</h1>
             <div className="studentCourses">
-              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorieT} cal={this.calificar} />
+              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorie} cal={this.calificar} onTutor={this.props.onTutor} />
             </div>
             <h1>Mis tutorias</h1>
             <h2>No tutorias registradas</h2>
@@ -173,10 +189,12 @@ class ProfilePage extends Component {
           <div className="profileTutorC">
             <h1>Tutorias que estoy tomando</h1>
             <div className="studentCourses">
-              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorieT} cal={this.calificar} />
+              <StudentCourses tutories={studentTutories} deleteT={this.deleteTutorie} cal={this.calificar} onTutor={this.props.onTutor} />
             </div>
             <h1>Mis tutorias</h1>
-            <h2>No tutorias registradas</h2>
+            <div className="tutorCourses">
+              <TutorCourses tutories={tutorTutories} deleteT={this.deleteTutorieT} />
+            </div>
           </div>
         </div>
       );
@@ -194,9 +212,7 @@ class ProfilePage extends Component {
               <h1>Tutorias que estoy tomando</h1>
               <h2>No tutorias registradas</h2>
               <h1>Mis tutorias</h1>
-              <div className="tutorCourses">
-                <TutorCourses tutories={tutorTutories} deleteT={this.deleteTutorieT} />
-              </div>
+              <h2>No tutorias registradas</h2>
               <h3 className="AgregarCurso center f3" onClick={() => console.log("Agregar")} ><Link to={'/agregar-curso'} >Agregar Curso</Link></h3>
             </div>
           </div>

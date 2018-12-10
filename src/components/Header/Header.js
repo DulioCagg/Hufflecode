@@ -3,7 +3,7 @@ import './Header.css';
 
 import { Link } from 'react-router-dom';
 
-const Header = ({ onSearchChange }) => {
+const Header = ({ onSearchChange, onLogout }) => {
   let faS = {
     'fontSize': '80px',
   }
@@ -17,6 +17,7 @@ const Header = ({ onSearchChange }) => {
           onChange={onSearchChange}
         />
         <Link to="/profile/1"><i className="fas fa-user-circle white tc" style={faS}></i></Link>
+        <button className="tc black" onClick={() => onLogout()} >Log out</button>
       </header>
     </div>
   );

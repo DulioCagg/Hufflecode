@@ -24,6 +24,7 @@ class SignIn extends Component {
       .then(res => {
         const ans = res.data.filter(user => (user.user.email === this.state.email) && (user.user.password === this.state.password))
         if(ans.length === 1) {
+          this.props.onLogin(ans[0]._id.$oid, ans[0].user.type)
           this.props.onSignIn('home')
         } else {
           alert("La cuenta o la contraseña es incorrecta")
