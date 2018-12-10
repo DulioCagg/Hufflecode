@@ -37,9 +37,9 @@ class SignIn extends Component {
       <article className="tc br23 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
           <div>
-            <p >
-              Fun(key)
-          </p>
+            <h1 >
+              Tutoring Me
+          </h1>
           </div>
           <div className="measure center">
             <fieldset className="ba b--transparent ph0 mh0"

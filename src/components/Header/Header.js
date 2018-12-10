@@ -10,7 +10,7 @@ const Header = ({ onSearchChange, onLogout }) => {
   return (
     <div className="header">
       <header>
-        <h1 className="tc white"><Link to="/">Fun(key)</Link></h1>
+        <h1 className="tc white"><Link to="/">Tutoring Me</Link></h1>
         <input type="search"
           placeholder="Search..."
           className="f3 black w-40 tc ba b--black bw1 bg-light-green"

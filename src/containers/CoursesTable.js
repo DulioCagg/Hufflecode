@@ -28,9 +28,9 @@ class CoursesTable extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          alert("Success!")
+          alert("Te has registrado de manera exitosa!")
         } else {
-          alert("An error ocurred, try again.")
+          alert("Ocurrio un error, intente de nuevo.")
         }
       })
 
@@ -50,8 +50,12 @@ class CoursesTable extends Component {
     this.setState({ student: this.props.student, major: this.props.major, subject: this.props.subject });
     Axios.get('https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5')
       .then(res => {
-        this.setState({ tutories: res.data.filter(tutor => tutor.major_id === this.state.major && tutor.subject_id === this.state.subject && tutor.amount !== tutor.current) })
-        this.setState({ majorName: res.data[0].name })
+        console.log(res.data);
+        if (res.data.length > 0) {
+          this.setState({ tutories: res.data.filter(tutor => tutor.major_id === this.state.major && tutor.subject_id === this.state.subject && tutor.amount !== tutor.current) })
+        } else {
+          this.setState({ tutories: [] })
+        }
       })
   }
 
@@ -61,7 +65,7 @@ class CoursesTable extends Component {
     return (
       <div>
         <h2 className="tc">Elige a tu tutor para la materia {this.state.majorName}</h2>
-        <hr/>
+        <hr />
         <table>
           <CoursesHead />
           <CoursesBody handleSubscribe={this.handleSubscribe} tutories={tutories} onTutor={this.props.onTutor} />

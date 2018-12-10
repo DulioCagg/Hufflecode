@@ -47,7 +47,7 @@ class ProfilePage extends Component {
 
   deleteTutorie = (idS, idT) => {
     Axios.delete(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor/${idS}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {})
-      .then(res => console.log(res.data))
+      .then(res => alert("Se elimino exitosamente la asesoria"))
     Axios.get(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor/${idT}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`)
       .then(res => {
         Axios.put(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor/${idT}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {
@@ -58,7 +58,7 @@ class ProfilePage extends Component {
           days: res.data.days,
           schedule: res.data.schedule,
           amount: res.data.amount,
-          current: res.data.current - 1
+          current: parseInt(res.data.current) - 1
         }).then(res => console.log(res.data))
       })
   }
@@ -66,7 +66,7 @@ class ProfilePage extends Component {
 
   deleteTutorieT = (idT) => {
     Axios.delete(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/subject-tutor/${idT}?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`, {})
-      .then(res => console.log(res.data))
+      .then(res => alert("Se elimino exitosamente la asesoria"))
     Axios.get(`https://api.mlab.com/api/1/databases/hufflecodedb/collections/student-tutor?apiKey=JHmuPiDXdgwWeiOSRS7x5gO9c8XqjsE5`)
       .then(res => {
         let info = res.data.filter(x => x.tutorie === idT)

@@ -26,6 +26,7 @@ class AddTutorie extends Component {
 
   handleSubject = (event) => {
     let info = String(event.target.value).split(",")
+    console.log(info);
     this.setState({ subject_id: parseInt(info[0]) });
     this.setState({ name: info[1] });
   }
